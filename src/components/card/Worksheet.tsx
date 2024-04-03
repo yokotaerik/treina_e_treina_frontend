@@ -1,4 +1,5 @@
-import { WorksheetResponseDTO, useWorkout } from "@/hooks/useWorkout";
+import { useWorkout } from "@/hooks/useWorkout";
+import { WorksheetResponseDTO } from "@/interfaces/interfaces";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -36,12 +37,12 @@ const Worksheet = ({ worksheet, handleStart, isArchived }: WorksheetProps) => {
         <div className="relative">
           <button
             onClick={handleDropdownToggle}
-            className="text-xl font-black px-3 py-1  border-gray-300 rounded-md"
+            className="text-xl font-black px-3 py-1 border-gray-300 rounded-md"
           >
             ...
           </button>
           {showDropdown && (
-            <ul className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-md">
+            <ul className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-md">
               <li
                 onClick={() =>
                   handleAction(
@@ -61,7 +62,7 @@ const Worksheet = ({ worksheet, handleStart, isArchived }: WorksheetProps) => {
 
       {!isArchived && (
         <button
-          className="block w-full bg-orange-500 text-white py-2 mt-4 hover:bg-orange-600 focus:outline-none focus:bg-orange-600"
+          className="block w-full bg-slate-500 text-white py-2 mt-4 hover:bg-slate-600 focus:outline-none focus:bg-slate-600"
           onClick={() => handleStart && handleStart(worksheet.id)}
         >
           Iniciar Treino

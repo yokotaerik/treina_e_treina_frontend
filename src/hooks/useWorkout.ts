@@ -1,72 +1,7 @@
+import { CreateWorkoutDTO, PatchSetDTO } from "@/interfaces/interfaces";
 import { api } from "@/utils/api";
 import Router from "next/router";
 import Swal from "sweetalert2";
-
-export interface WorkoutResponseDTO {
-  id: number;
-  worksheet: WorksheetResponseDTO;
-  exercises: ExerciseResponseDTO[];
-  createdAt: Date;
-}
-
-export interface WorksheetResponseDTO {
-  id: number;
-  name: string;
-  description: string;
-  exercises: ExerciseInWorksheetDTO[];
-}
-
-export interface ExerciseInWorksheetDTO {
-  id: number;
-  info: ExerciseInfoResponseDTO;
-  numberOfSets: number;
-  notes: string;
-}
-
-export interface UserWorkoutsAndWorksheetsDTO {
-  worksheets: WorksheetResponseDTO[];
-  workouts: WorkoutResponseDTO[];
-}
-
-export interface ExerciseResponseDTO {
-  id: number;
-  info: ExerciseInfoResponseDTO;
-  sets: SetResponseDTO[];
-}
-
-export interface SetResponseDTO {
-  id: number;
-  minutesResting: number;
-  reps: number;
-  weight: number;
-  notes: string;
-}
-
-export interface ExerciseInfoResponseDTO {
-  id: number;
-  name: string;
-  description: string;
-}
-
-export interface CreateWorkoutDTO {
-  name: string;
-  description: string;
-  exercisesDTOS: AddExerciseDTO[];
-}
-
-export interface AddExerciseDTO {
-  exerciseId: number;
-  numberOfSets: number;
-  notes: string;
-}
-
-export interface PatchSetDTO {
-  id: number;
-  weight: number;
-  reps: number;
-  minutesResting: number;
-  notes: string;
-}
 
 export const useWorkout = () => {
   const showErrorAlert = (error: string) => {
@@ -121,10 +56,7 @@ export const useWorkout = () => {
   const startWorkout = async (id: number) => {
     try {
       const response = await api.post(`/workout/start/${id}`);
-      const pushToWorkout = () => {
-        Router.push(`/workout/${id}`)
-      }
-      setTimeout(pushToWorkout, 5000)
+      Router.push(`/workout/${id}`);
     } catch (error: any) {
       showErrorAlert(error.message);
     }
@@ -147,10 +79,19 @@ export const useWorkout = () => {
     }
   };
 
+  const fetchUserWorkoutsStatsByWorksheetId = async (id: string) => {
+    try {
+      const response = await api.get(`/user/worksheet/${id}`);
+      return response.data;
+    } catch (error: any) {
+      showErrorAlert(error.response.data);
+    }
+  };
+
   const archiveWorkout = async (id: number) => {
     try {
       const response = await api.patch(`/worksheet/archive/${id}`);
-      Router.push("/my-workouts");
+      Router.push("/me");
       Swal.fire({
         title: "Archived!",
         text: "Your worksheet has been archived.",
@@ -164,7 +105,7 @@ export const useWorkout = () => {
   const unarchiveWorkout = async (id: number) => {
     try {
       const response = await api.patch(`/worksheet/unarchive/${id}`);
-      Router.push("/my-workouts");
+      Router.push("/me");
       Swal.fire({
         title: "Unarchived!",
         text: "Your file has been unarchived.",
@@ -178,7 +119,7 @@ export const useWorkout = () => {
   const deleteWorkout = async (id: string) => {
     try {
       const response = await api.delete(`/workout/delete/${id}`);
-      Router.push("/my-workouts");
+      Router.push("/me");
     } catch (error: any) {
       showErrorAlert(error.response.data);
     }
@@ -195,5 +136,6 @@ export const useWorkout = () => {
     deleteWorkout,
     unarchiveWorkout,
     fetchUserArchievedWorksheets,
+    fetchUserWorkoutsStatsByWorksheetId,
   };
 };

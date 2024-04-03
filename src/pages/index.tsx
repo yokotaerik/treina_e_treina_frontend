@@ -30,7 +30,7 @@ export default function Home() {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLogin(e.target.value)
             }
-            className="p-2 border border-gray-300  focus:outline-none focus:border-blue-500"
+            className="p-2 border border-gray-300  focus:outline-none focus:border-slate-500"
           />
 
           <input
@@ -40,12 +40,12 @@ export default function Home() {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
-            className="p-2 border border-gray-300  focus:outline-none focus:border-blue-500"
+            className="p-2 border border-gray-300  focus:outline-none focus:border-slate-500"
           />
 
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2  hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+            className="bg-slate-500 text-white px-4 py-2  hover:bg-slate-700 focus:outline-none focus:bg-slate-700"
           >
             Login
           </button>

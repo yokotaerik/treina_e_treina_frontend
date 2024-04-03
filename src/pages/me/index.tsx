@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { useWorkout, UserWorkoutsAndWorksheetsDTO } from "@/hooks/useWorkout";
+import { useWorkout } from "@/hooks/useWorkout";
 import Worksheet from "@/components/card/Worksheet";
 import WorkoutCard from "@/components/card/WorkoutCard";
+import { UserWorkoutsAndWorksheetsDTO } from "@/interfaces/interfaces";
 
 const MyWorkoutsPage = () => {
   const { fetchUserWorkouts, startWorkout } = useWorkout();
@@ -29,7 +29,7 @@ const MyWorkoutsPage = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="my-8">
-        <h1 className="text-4xl font-bold text-orange-600 mb-3">
+        <h1 className="text-4xl font-bold text-slate-700 mb-3">
           Seus treinos
         </h1>
         <div className="flex flex-wrap gap-5">
@@ -46,10 +46,10 @@ const MyWorkoutsPage = () => {
       </div>
       <div className="mt-8 text-center"></div>
       <div className="my-8">
-        <h1 className="text-4xl font-bold text-orange-600 mb-3">
+        <h1 className="text-4xl font-bold text-slate-700 mb-3">
           Treinos Realizados
         </h1>
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap justify-center gap-2">
           {userWorkouts.workouts.map((workout) => {
             return <WorkoutCard workout={workout} />;
           })}

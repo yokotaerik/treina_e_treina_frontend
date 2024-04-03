@@ -30,22 +30,21 @@ const CreateExerciseForm = ({ handleAdd }: CreateExerciseFormProps) => {
 
   return (
     <div className="p-8 bg-white w-full">
-      <h2 className="text-2xl font-bold text-orange-600 mb-4">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">
         Adicionar Exercício
       </h2>
-      <form onSubmit={handleSubmit}
-      className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <label className="block  text-lg font-semibold text-gray-800">
           Nome do exercicio:
         </label>
         <input
-          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-orange-500"
+          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-gray-700"
           name="name"
           value={exerciseInfo.name}
           onChange={handleChange}
         />
         <button
-          className="bg-orange-500 text-white px-4 py-2 font-semibold hover:bg-orange-600 w-full"
+          className="bg-gray-700 text-white px-4 py-2 font-semibold hover:bg-gray-800 w-full"
           type="submit"
         >
           Adicionar

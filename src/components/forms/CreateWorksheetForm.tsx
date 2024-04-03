@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Select from "react-select";
+import { useWorkout } from "@/hooks/useWorkout";
 import {
   ExerciseInfoResponseDTO,
-  useWorkout,
-  CreateWorkoutDTO,
   AddExerciseDTO,
-} from "@/hooks/useWorkout";
+  CreateWorkoutDTO,
+} from "@/interfaces/interfaces";
+import { useState } from "react";
+import Select from "react-select";
 
 interface ExercisesInWorkoutProps {
   exerciseId: number;
@@ -80,15 +80,13 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
 
   return (
     <div className="p-8 bg-white w-full">
-      <h1 className="text-4xl font-bold text-orange-600 mb-4">
-        Criar o treino
-      </h1>
+      <h1 className="text-4xl font-bold text-slate-800 mb-4">Criar o treino</h1>
       <div className="mb-4">
         <label className="block mb-2 text-lg font-semibold text-gray-800">
           Nome do treino:
         </label>
         <input
-          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-orange-500"
+          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-slate-700"
           type="text"
           placeholder="Nome do treino"
           value={workoutName}
@@ -100,7 +98,7 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
           Descrição do treino:
         </label>
         <textarea
-          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-orange-500"
+          className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-slate-700"
           placeholder="Descrição do treino"
           value={workoutDescription}
           onChange={(e) => setWorkoutDescription(e.target.value)}
@@ -141,7 +139,7 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
           Número de séries:
         </label>
         <input
-          className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-orange-500"
+          className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-slate-700"
           type="number"
           placeholder="Número de séries"
           value={numberOfSets}
@@ -151,20 +149,20 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
           Alguma observação?
         </label>
         <textarea
-          className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-orange-500"
+          className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-slate-700"
           placeholder="Alguma observação?"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
         />
         <button
-          className="bg-orange-500 text-white px-3 py-2 font-semibold hover:bg-orange-600 w-full"
+          className="bg-slate-700 text-white px-3 py-2 font-semibold hover:bg-slate-800 w-full"
           onClick={addExercise}
         >
           Adicionar exercício
         </button>
       </div>
       {exercisesInWorkout.length > 0 ? (
-        <p className="text-2xl font-bold text-orange-600 mb-2">Exercícios</p>
+        <p className="text-2xl font-bold text-slate-800 mb-2">Exercícios</p>
       ) : null}
       <div className="flex flex-wrap gap-4">
         {exercisesInWorkout.map((exercise, index) => (
@@ -180,7 +178,7 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
                 Séries:
               </label>
               <input
-                className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-orange-500 w-full"
+                className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-slate-700 w-full"
                 type="number"
                 value={exercise.numberOfSets}
                 min={1}
@@ -195,7 +193,7 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
                 Observações:
               </label>
               <textarea
-                className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-orange-500 w-full"
+                className="border border-gray-300 px-3 py-2 mr-2 focus:outline-none focus:border-slate-700 w-full"
                 value={exercise.notes}
                 onChange={(e) => handleNotesChange(index, e.target.value)}
               />
@@ -210,9 +208,10 @@ const CreateWorksheetForm = ({ exercises }: CreateWorksheetFormProps) => {
         ))}
       </div>
       {exercisesInWorkout.length > 0 ? (
-        <button 
-        onClick={(e) => handleAddWorkout()}
-        className="bg-orange-500 text-white px-4 py-2 font-semibold hover:bg-orange-600 w-full">
+        <button
+          onClick={(e) => handleAddWorkout()}
+          className="bg-slate-700 text-white px-4 py-2 font-semibold hover:bg-slate-800 w-full"
+        >
           Adicionar o treino!
         </button>
       ) : null}

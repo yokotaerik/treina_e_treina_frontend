@@ -38,6 +38,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       setIsLoggedIn(true);
     } else {
       signOut();
+      Router.push("/");
     }
   }, []);
 
@@ -56,11 +57,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Hi ",
+        title: "Bem vindo! ",
         showConfirmButton: false,
         timer: 1500,
       });
-      Router.push("/my-workouts")
+      Router.push("/me");
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -76,6 +77,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = () => {
     destroyCookie(undefined, "token");
     setIsLoggedIn(false);
+    Router.push('/')
   };
 
   return (

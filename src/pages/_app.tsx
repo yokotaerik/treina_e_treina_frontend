@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthProvider>
       <Layout>
         <Navbar />
-        <div className="bg-gradient-to-r from-stone-300 to-stone-100 flex justify-center  min-h-screen w-full">
+        <div className="bg-neutral-200 flex justify-center  min-h-screen w-full">
           <Component {...pageProps} />
         </div>
       </Layout>
