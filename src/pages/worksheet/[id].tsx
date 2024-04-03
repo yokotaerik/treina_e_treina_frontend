@@ -4,7 +4,7 @@ import { useWorkout } from "@/hooks/useWorkout";
 import Link from "next/link";
 import { WorksheetResponseDTO } from "@/interfaces/interfaces";
 
-function WorkoutPage() {
+function WorksheetPage() {
   const router = useRouter();
   const { id } = router.query;
   const { fetchWorksheetById } = useWorkout();
@@ -63,4 +63,4 @@ function WorkoutPage() {
   );
 }
 
-export default WorkoutPage;
+export default WorksheetPage;

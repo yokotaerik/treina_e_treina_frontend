@@ -56,7 +56,8 @@ export const useWorkout = () => {
   const startWorkout = async (id: number) => {
     try {
       const response = await api.post(`/workout/start/${id}`);
-      Router.push(`/workout/${id}`);
+      const { workoutId } = response.data
+      Router.push(`/workout/${workoutId}`);
     } catch (error: any) {
       showErrorAlert(error.message);
     }
